@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  app:
+    build: ./docker/nginx
+    volumes_from:
+      - appdata
+    links:
+      - php
+    ports:
+      - 80:80
+
+  php:
+    image: php:fpm
+    volumes_from:
+      - appdata
+
+  appdata:
+    image: tianon/true
+    volumes:
+      - /var/www/html
+      - ~/.composer:/var/www/.composer
+      - .:/var/www/html
+
+  composer:
+   image: composer:latest
+   command: install
+   working_dir: /var/www/html
+   volumes_from:
+      - appdata

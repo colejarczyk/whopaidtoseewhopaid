@@ -2,18 +2,23 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Silex\Application;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
-$app->get('/', function () use ($app) {
-    return $app['twig']->render('index.html.twig', array());
-})
-->bind('homepage')
-;
+/** @var Application $app */
 
+// main page
+$app->get('/', function () use ($app) {
+    return $app['twig']->render('index.html.twig', []);
+})->bind('homepage');
+
+// list who paid
+$app->get('/list/{token}', function ($token) use ($app) {
+    return $app['twig']->render('list.html.twig', ['token' => $token]);
+})->bind('list');
+
+// error handler
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;
