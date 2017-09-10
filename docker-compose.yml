@@ -12,6 +12,7 @@ services:
 
   php:
     image: php:fpm
+    build: ./docker/phpfpm
     volumes_from:
       - appdata
 
@@ -24,7 +25,7 @@ services:
 
   composer:
    image: composer:latest
-   command: install
+   command: install --ignore-platform-reqs
    working_dir: /var/www/html
    volumes_from:
       - appdata
