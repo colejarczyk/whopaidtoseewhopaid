@@ -1,27 +1,21 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    <div class="site-wrapper-inner">
 
-        <div class="cover-container">
-
-
-
-            <div class="inner cover">
-                <h1 class="cover-heading">Pay <b>one dolar</b> and be on the top list</h1>
-                <p class="notice lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-                <p class="lead">
-                    <a href="{{ path('pay') }}" class=""><img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/silver-pill-paypal-60px.png" alt="PayPal"></a>
-                </p>
-            </div>
-
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>&copy; 2017</p>
-                </div>
-            </div>
-
+    <form id="pay" method="POST" action="{{ path('pay') }}">
+        <h1 class="cover-heading">Pay <b>one dolar</b> and be on the top list</h1>
+        <p class="notice lead">Cover is a one-page template for building simple and beautiful home pages.
+            Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <div class="input-group username">
+            <span class="input-group-addon" id="basic-addon1">#</span>
+            <input name="username" type="text" class="form-control" placeholder="Username"
+                   aria-describedby="basic-addon1">
         </div>
-
-    </div>
+        <p class="lead">
+            <a onclick="document.getElementById('pay').submit();" href="#" class="">
+                <img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/silver-pill-paypal-60px.png"
+                     alt="PayPal">
+            </a>
+        </p>
+    </form>
 {% endblock %}

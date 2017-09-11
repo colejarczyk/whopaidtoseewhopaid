@@ -34,6 +34,9 @@ body {
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
 }
+.alert {
+  text-shadow: none;
+}
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
@@ -140,6 +143,10 @@ img.success {
   display: flex;
   justify-content: center;
 }
+.username {
+  max-width: 250px;
+  margin: 40px auto;
+}
 
 /*
  * Footer
@@ -172,8 +179,7 @@ table.list th {
     top: 0;
   }
   .mastfoot {
-    position: fixed;
-    bottom: 0;
+
   }
   /* Start the vertical centering */
   .site-wrapper-inner {
