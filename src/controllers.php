@@ -128,7 +128,6 @@ $app->get('/pay/done', function () use ($app) {
     $gateway->execute($status = new GetHumanStatus($token));
     $payment = $status->getFirstModel();
 
-    header('Content-Type: application/json');
     $data = json_encode([
         'status' => $status->getValue(),
         'order' => [
