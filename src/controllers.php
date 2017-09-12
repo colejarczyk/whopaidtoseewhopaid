@@ -89,7 +89,13 @@ $app->get('/pay/capture', function () use ($app) {
         /** @var Payum $payum */
         $payum = getPayum();
 
-        $token   = $payum->getHttpRequestVerifier()->verify($_REQUEST);
+        /** @var \Payum\Core\Payum $payum */
+        try {
+            $token   = $payum->getHttpRequestVerifier()->verify($_REQUEST);
+        } catch (\Exception $e) {
+            return $app->redirect('/');
+        }
+
         $gateway = $payum->getGateway($token->getGatewayName());
 
         /** @var \Payum\Core\GatewayInterface $gateway */
