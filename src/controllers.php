@@ -137,6 +137,13 @@ $app->get(
         /** @var Payment $payment */
         $payment = $status->getFirstModel();
 
+        $statusValue = $status->getValue();
+
+        if ($statusValue !=  'completed' && $statusValue != 'pending') {
+            $app['session']->getFlashBag()->add('danger', '<b>Oops!</b> No payment, no list!');
+            return $app->redirect('/');
+        }
+
         $username = $payment->getDescription();
         /** @var Connection $db */
         $db = $app['db'];
