@@ -138,7 +138,7 @@ $app->get(
         $db->insert('users', ['username' => $app->escape($username), 'createdAt' => time()]);
 
         $myId = $db->fetchAssoc('SELECT id FROM users where username = ?', [$username]);
-        $users = $db->fetchAll('SELECT * FROM users ORDER BY ID ASC');
+        $users = $db->fetchAll('SELECT * FROM users ORDER BY ID DESC LIMIT 100');
 
         return $app['twig']->render('list.html.twig', ['myId' => $myId['id'], 'users' => $users]);
     }
